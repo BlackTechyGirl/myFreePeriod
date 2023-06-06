@@ -19,7 +19,7 @@ public class CycleController {
     @PostMapping("/cycle")
     public String saveCycle(@ModelAttribute("cycle") Cycle cycle) {
         cycleService.saveCycle(cycle);
-        return "redirect:/success"; // Redirect to a success page
+        return "redirect:/success";
     }
 
 }

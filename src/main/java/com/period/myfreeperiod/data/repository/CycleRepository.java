@@ -1,4 +1,7 @@
 package com.period.myfreeperiod.data.repository;
 
-public interface CycleRepository {
+import com.period.myfreeperiod.data.model.Cycle;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CycleRepository extends JpaRepository<Cycle, Long> {
 }
