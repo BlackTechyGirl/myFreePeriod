@@ -1,6 +1,6 @@
 package com.period.myfreeperiod.controller;
 
-import com.period.myfreeperiod.model.Cycle;
+import com.period.myfreeperiod.data.model.Cycle;
 import com.period.myfreeperiod.service.CycleService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.ModelAttribute;

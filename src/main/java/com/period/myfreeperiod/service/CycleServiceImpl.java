@@ -1,6 +1,6 @@
 package com.period.myfreeperiod.service;
 
-import com.period.myfreeperiod.model.Cycle;
+import com.period.myfreeperiod.data.model.Cycle;
 import org.springframework.stereotype.Service;
 
 @Service
