@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService{
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(()->
                 new BusinessLogicException(
-                        String.format("Passenger with id %d not found", id)));
+                        String.format("User with id %d not found", id)));
     }
 
     @Override
@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService{
     private static RegisterResponse getRegisterResponse(User savedUser) {
         RegisterResponse registerResponse = new RegisterResponse();
         registerResponse.setId(savedUser.getId());
-        registerResponse.setSuccess(true);
+//        registerResponse.setSuccess(true);
         registerResponse.setMessage("User Registration Successful");
         return registerResponse;
     }

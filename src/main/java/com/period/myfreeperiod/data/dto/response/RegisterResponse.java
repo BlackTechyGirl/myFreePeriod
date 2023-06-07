@@ -12,6 +12,6 @@ public class RegisterResponse {
 
     private Long id;
     private String message;
-    private boolean isSuccess;
+//    private boolean isSuccess;
     private HttpStatus status;
 }

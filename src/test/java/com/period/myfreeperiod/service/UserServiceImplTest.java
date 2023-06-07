@@ -5,6 +5,7 @@ import com.period.myfreeperiod.data.dto.requests.LoginRequest;
 import com.period.myfreeperiod.data.dto.requests.RegisterRequest;
 import com.period.myfreeperiod.data.dto.response.LoginResponse;
 import com.period.myfreeperiod.data.dto.response.RegisterResponse;
+import com.period.myfreeperiod.data.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,15 @@ public class UserServiceImplTest {
     void registerTest() {
         RegisterResponse registerResponse = userService.register(request);
         assertThat(registerResponse).isNotNull();
+    }
+
+    @Test
+    public void getUserByIdTest(){
+        var registerResponse =userService.register(request);
+        User foundUser = userService.getUserById(registerResponse.getId());
+        assertThat(foundUser).isNotNull();
+        Long user=foundUser.getId();
+//        assertThat(user.getFirstName()).isEqualTo(request.getName());
     }
 
 
