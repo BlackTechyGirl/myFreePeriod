@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 @Setter
 @Builder
 public class RegisterResponse {
+
+    private Long id;
     private String message;
+    private boolean isSuccess;
     private HttpStatus status;
 }
