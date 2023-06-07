@@ -92,7 +92,37 @@ public class CycleServiceImpl implements CycleService{
 //        }
         return dates;
     }
+
     public void validateCycleData(int cycleLength, LocalDate lastPeriodDate, int flowLength) {
-        // Add your validation logic here
+        // Perform validation checks
+        if (cycleLength <= 0) {
+            throw new IllegalArgumentException("Cycle length must be greater than 0.");
+        }
+
+        if (flowLength <= 0) {
+            throw new IllegalArgumentException("Flow length must be greater than 0.");
+        }
+
+        if (lastPeriodDate == null) {
+            throw new IllegalArgumentException("Last period date cannot be null.");
+        }
+
+        // Additional validation checks as per your requirements
+
+        // Example: Ensure that the last period date is not in the future
+        LocalDate currentDate = LocalDate.now();
+        if (lastPeriodDate.isAfter(currentDate)) {
+            throw new IllegalArgumentException("Last period date cannot be in the future.");
+        }
+
+        // Example: Ensure that the cycle length is within a reasonable range
+        int minCycleLength = 21;
+        int maxCycleLength = 45;
+        if (cycleLength < minCycleLength || cycleLength > maxCycleLength) {
+            throw new IllegalArgumentException("Cycle length should be between " + minCycleLength + " and " + maxCycleLength + " days.");
+        }
+
+        // Example: Add more validation checks as per your specific requirements
     }
+
 }
