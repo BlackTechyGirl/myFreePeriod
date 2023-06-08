@@ -66,12 +66,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        return (User) userRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
-    }
-
-    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -82,8 +76,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateUser(User user) {
+    public User updateUser(Long id, User user) {
         userRepository.save(user);
+        return user;
     }
 
     @Override

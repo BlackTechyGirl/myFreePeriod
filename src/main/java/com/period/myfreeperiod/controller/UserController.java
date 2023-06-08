@@ -1,5 +1,6 @@
 package com.period.myfreeperiod.controller;
 
+import com.period.myfreeperiod.data.dto.requests.ChangePasswordRequest;
 import com.period.myfreeperiod.data.dto.requests.LoginRequest;
 import com.period.myfreeperiod.data.dto.requests.RegisterRequest;
 import com.period.myfreeperiod.data.dto.response.LoginResponse;
@@ -7,7 +8,6 @@ import com.period.myfreeperiod.data.dto.response.RegisterResponse;
 import com.period.myfreeperiod.data.model.User;
 import com.period.myfreeperiod.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,11 +39,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(foundUser);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
-//        User user = userService.updateUser(id, updatedUser);
-//        return ResponseEntity.ok(user);
-//    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        User user = userService.updateUser(id, updatedUser);
+        return ResponseEntity.ok(user);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
@@ -57,11 +57,11 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-//    @PutMapping("/{id}/password")
-//    public ResponseEntity<?> changePassword(@PathVariable Long id, @RequestBody ChangePasswordRequest changePasswordRequest) {
-//        userService.changePassword(id, changePasswordRequest.getNewPassword());
-//        return ResponseEntity.ok().build();
-//    }
+    @PutMapping("/{id}/password")
+    public ResponseEntity<?> changePassword(@PathVariable Long id, @RequestBody ChangePasswordRequest changePasswordRequest) {
+        userService.changePassword(id, changePasswordRequest.getNewPassword());
+        return ResponseEntity.ok().build();
+    }
     @PostMapping
     public ResponseEntity<?> saveUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
