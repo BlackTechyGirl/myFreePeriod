@@ -11,15 +11,11 @@ import lombok.*;
 @Builder
 public class RegisterRequest {
 
-    @JsonProperty("firstname")
     private String firstName;
 
-    @JsonProperty("lastname")
     private String lastName;
 
-    @JsonProperty("email")
     private String email;
 
-    @JsonProperty("password")
     private String password;
 }

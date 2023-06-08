@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService{
 
         return RegisterResponse.builder()
                 .message("Account created successfully")
+                .isSuccess(true)
                 .status(HttpStatus.CREATED)
                 .build();
     }
@@ -93,13 +94,5 @@ public class UserServiceImpl implements UserService{
 
         user.setPassword(newPassword);
         userRepository.save(user);
-    }
-
-    private static RegisterResponse getRegisterResponse(User savedUser) {
-        RegisterResponse registerResponse = new RegisterResponse();
-        registerResponse.setId(savedUser.getId());
-        registerResponse.setSuccess(true);
-        registerResponse.setMessage("User Registration Successful");
-        return registerResponse;
     }
 }
