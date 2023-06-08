@@ -11,6 +11,7 @@ import com.period.myfreeperiod.utils.UserLoginException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 
 @Service
-@Builder
+@Slf4j
 @AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService{
         user.setPassword(request.getPassword());
 
         userRepository.save(user);
+        log.info(user.getFirstName());
 
         return RegisterResponse.builder()
                 .message("Account created successfully")

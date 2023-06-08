@@ -10,9 +10,7 @@ import lombok.*;
 @Builder
 public class LoginRequest {
 
-    @JsonProperty("email")
     private String email;
 
-    @JsonProperty("password")
     private String password;
 }

@@ -1,8 +1,7 @@
-package com.period.myfreeperiod.controller;
-
+package com.period.myfreeperiod.service;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class UserControllerTest {
+public class CycleServiceTest {
 }

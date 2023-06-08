@@ -8,6 +8,7 @@ import com.period.myfreeperiod.data.dto.response.RegisterResponse;
 import com.period.myfreeperiod.data.model.User;
 import com.period.myfreeperiod.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @AllArgsConstructor
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -24,6 +26,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest request){
         RegisterResponse response = userService.register(request);
+        log.info(request.getFirstName());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -33,19 +36,19 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/all/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         var foundUser = userService.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(foundUser);
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
         User user = userService.updateUser(id, updatedUser);
         return ResponseEntity.ok(user);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully");
@@ -62,7 +65,7 @@ public class UserController {
         userService.changePassword(id, changePasswordRequest.getNewPassword());
         return ResponseEntity.ok().build();
     }
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<?> saveUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
         return ResponseEntity.ok(savedUser);
