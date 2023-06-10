@@ -36,7 +36,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/all/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         var foundUser = userService.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(foundUser);
@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok("User deleted successfully");
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<?> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
