@@ -45,6 +45,7 @@ public class CycleServiceImpl implements CycleService{
 
     @Override
     public  List<LocalDate> getFlowDates(LocalDate lastPeriodDate, int cycleLength, int flowLength) {
+        validateCycleData(cycleLength, lastPeriodDate, flowLength);
         LocalDate nextPeriodDate = lastPeriodDate.plusDays(cycleLength);
         LocalDate flowStartDate = nextPeriodDate.minusDays(flowLength);
 
@@ -57,13 +58,14 @@ public class CycleServiceImpl implements CycleService{
 
     @Override
     public LocalDate getOvulationDate(LocalDate lastPeriodDate, int cycleLength, int flowLength) {
+        validateCycleData(cycleLength, lastPeriodDate, flowLength);
         LocalDate nextPeriodDate = lastPeriodDate.plusDays(cycleLength);
         return nextPeriodDate.minusDays(14);
-        //return nextPeriodDate.minusDays(14);
     }
 
     @Override
     public List<LocalDate> getFertilityDates(LocalDate lastPeriodDate, int cycleLength, int flowLength) {
+        validateCycleData(cycleLength, lastPeriodDate, flowLength);
 
         LocalDate ovulationDate = getOvulationDate(lastPeriodDate, cycleLength, flowLength);
         LocalDate fertilityStarts = ovulationDate.minusDays(5);
@@ -81,10 +83,10 @@ public class CycleServiceImpl implements CycleService{
 
     @Override
     public List<LocalDate> getNonFertileDates(LocalDate lastPeriodDate, int cycleLength, int flowLength) {
+        validateCycleData(cycleLength, lastPeriodDate, flowLength);
+        validateCycleData(cycleLength, lastPeriodDate, flowLength);
         LocalDate ovulationDate = getOvulationDate(lastPeriodDate, cycleLength, flowLength);
-//        LocalDate nonFertileStart = lastPeriodDate;
 
-//        nonFertileDates = new ArrayList<>();
         List<LocalDate> dates = new ArrayList<>();
         for (int i = 5; i <=cycleLength-5 ; i++) {
             LocalDate nonFertile = ovulationDate.minusDays(i);
@@ -93,7 +95,7 @@ public class CycleServiceImpl implements CycleService{
         return dates;
     }
 
-    public void validateCycleData(int cycleLength, LocalDate lastPeriodDate, int flowLength) {
+    private void validateCycleData(int cycleLength, LocalDate lastPeriodDate, int flowLength) {
         // Perform validation checks
         if (cycleLength <= 0) {
             throw new IllegalArgumentException("Cycle length must be greater than 0.");

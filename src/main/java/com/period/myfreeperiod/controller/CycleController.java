@@ -18,7 +18,7 @@ import java.util.List;
 public class CycleController {
         private final CycleService cycleService;
 
-        @PostMapping
+        @PostMapping("/save")
         public ResponseEntity<?> saveCycle(@RequestBody Cycle cycle) {
             Cycle savedCycle = cycleService.saveCycle(cycle);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedCycle);
@@ -30,14 +30,14 @@ public class CycleController {
             return ResponseEntity.ok(cycle);
         }
 
-        @GetMapping
+        @GetMapping("/all'")
         public ResponseEntity<?> getAllCycles() {
             List<Cycle> cycles = cycleService.getAllCycles();
             return ResponseEntity.ok(cycles);
         }
 
         @GetMapping("/user/{userId}")
-        public ResponseEntity<?> getCyclesByUserId(@PathVariable Long userId) {
+        public ResponseEntity<?> getCyclesById(@PathVariable Long userId) {
             List<Cycle> cycles = (List<Cycle>) cycleService.getCycleById(userId);
             return ResponseEntity.ok(cycles);
         }
