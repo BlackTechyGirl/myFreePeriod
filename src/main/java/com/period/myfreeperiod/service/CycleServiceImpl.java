@@ -66,7 +66,7 @@ public class CycleServiceImpl implements CycleService{
     @Override
     public List<LocalDate> getFertilityDates(LocalDate lastPeriodDate, int cycleLength, int flowLength) {
         validateCycleData(cycleLength, lastPeriodDate, flowLength);
-
+//
         LocalDate ovulationDate = getOvulationDate(lastPeriodDate, cycleLength, flowLength);
         LocalDate fertilityStarts = ovulationDate.minusDays(5);
         LocalDate fertilityEnds = ovulationDate.plusDays(5);
@@ -83,7 +83,6 @@ public class CycleServiceImpl implements CycleService{
 
     @Override
     public List<LocalDate> getNonFertileDates(LocalDate lastPeriodDate, int cycleLength, int flowLength) {
-        validateCycleData(cycleLength, lastPeriodDate, flowLength);
         validateCycleData(cycleLength, lastPeriodDate, flowLength);
         LocalDate ovulationDate = getOvulationDate(lastPeriodDate, cycleLength, flowLength);
 
