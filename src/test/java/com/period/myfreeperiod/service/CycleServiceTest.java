@@ -70,7 +70,7 @@ public class CycleServiceTest {
     @Test
     void getNonFertileDates() {
         List<LocalDate> expectedDates = List.of(
-                LocalDate.of(2023, 4, 25),
+                LocalDate.of(2023, 4, 14),
                 LocalDate.of(2023, 4, 26),
                 LocalDate.of(2023, 4, 27),
                 LocalDate.of(2023, 4, 28),

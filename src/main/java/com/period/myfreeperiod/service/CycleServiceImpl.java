@@ -87,7 +87,7 @@ public class CycleServiceImpl implements CycleService{
         LocalDate ovulationDate = getOvulationDate(lastPeriodDate, cycleLength, flowLength);
 
         List<LocalDate> dates = new ArrayList<>();
-        for (int i = 5; i <=cycleLength-5 ; i++) {
+        for (int i = cycleLength; i <=cycleLength-5 ; i++) {
             LocalDate nonFertile = ovulationDate.minusDays(i);
             dates.add(nonFertile);
         }
@@ -95,7 +95,6 @@ public class CycleServiceImpl implements CycleService{
     }
 
     private void validateCycleData(int cycleLength, LocalDate lastPeriodDate, int flowLength) {
-        // Perform validation checks
         if (cycleLength <= 0) {
             throw new IllegalArgumentException("Cycle length must be greater than 0.");
         }
@@ -108,22 +107,16 @@ public class CycleServiceImpl implements CycleService{
             throw new IllegalArgumentException("Last period date cannot be null.");
         }
 
-        // Additional validation checks as per your requirements
-
-        // Example: Ensure that the last period date is not in the future
         LocalDate currentDate = LocalDate.now();
         if (lastPeriodDate.isAfter(currentDate)) {
             throw new IllegalArgumentException("Last period date cannot be in the future.");
         }
 
-        // Example: Ensure that the cycle length is within a reasonable range
         int minCycleLength = 21;
         int maxCycleLength = 45;
         if (cycleLength < minCycleLength || cycleLength > maxCycleLength) {
             throw new IllegalArgumentException("Cycle length should be between " + minCycleLength + " and " + maxCycleLength + " days.");
         }
-
-        // Example: Add more validation checks as per your specific requirements
     }
 
 }
