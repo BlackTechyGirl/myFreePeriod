@@ -101,7 +101,6 @@ The project follows a layered architecture with the following main components:
 To run the tests, use the following command:
 mvn test
 
-// Sample test case for user registration
 @Test
 void registerTest() {
     RegisterResponse registerResponse = userService.register(registerRequest);
@@ -124,5 +123,5 @@ This project is licensed under the MIT License.
 ## Contact
 For any questions or support, please reach out to:
 - **Email:** marthadanladi653@gmail.com
-- **GitHub:** [yourusername]( https://github.com/BlackTechy)
+- **GitHub:** [yourusername]( https://github.com/BlackTechyGirl)
 
