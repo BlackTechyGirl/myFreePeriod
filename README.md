@@ -11,10 +11,9 @@ A Spring Boot application to track menstrual cycles, predict ovulation dates, an
 5. [Installation](#installation)
 6. [Usage](#usage)
 7. [API Endpoints](#api-endpoints)
-8. [Testing](#testing)
-9. [Contributing](#contributing)
-10. [License](#license)
-11. [Contact](#contact)
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Contact](#contact)
 
 ## Introduction
 The Menstrual Cycle Tracking App helps users track their menstrual cycles, predict ovulation, and identify fertility windows. This application is built with Spring Boot and includes user registration, login, and password management functionalities.
@@ -97,18 +96,6 @@ The project follows a layered architecture with the following main components:
 | PUT    | /api/v1/users/{id}/password | Change user password              |
 | POST   | /api/v1/users/save          | Save user                         |
 
-## Testing
-To run the tests, use the following command:
-mvn test
-
-@Test
-void registerTest() {
-    RegisterResponse registerResponse = userService.register(registerRequest);
-    assertThat(registerResponse).isNotNull();
-    assertTrue(registerResponse.isSuccess());
-    assertEquals("Account created successfully", registerResponse.getMessage());
-    assertEquals(HttpStatus.CREATED, registerResponse.getStatus());
-}
 
 ## Contributing
 1. Fork the repository.
