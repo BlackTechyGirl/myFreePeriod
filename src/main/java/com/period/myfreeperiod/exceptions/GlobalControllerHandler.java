@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class GlobalControllerHandler {
     @ExceptionHandler
-    public ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest webRequest){
+    public ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex, WebRequest webRequest){
         ErrorDetails errorDetails = new ErrorDetails(ZonedDateTime.now(), ex.getMessage(),
                 webRequest.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);

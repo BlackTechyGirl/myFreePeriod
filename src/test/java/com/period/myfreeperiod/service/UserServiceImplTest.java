@@ -45,10 +45,15 @@ public class UserServiceImplTest {
         registerRequest.setPassword("testPassword");
 
         loginRequest = new LoginRequest();
-        loginRequest.setEmail("john.doe@example.com");
-        loginRequest.setPassword("password");
+        loginRequest.setEmail("test@email.com");
+        loginRequest.setPassword("testPassword");
 
         user = new User();
+        user.setFirstName("existingFirstName");
+        user.setLastName("existingLastName");
+        user.setEmail("existing@email.com");
+        user.setPassword("existingPassword");
+        user = userRepository.save(user);
     }
 
     @Test
@@ -59,6 +64,64 @@ public class UserServiceImplTest {
         assertEquals("Account created successfully", registerResponse.getMessage());
         assertEquals(HttpStatus.CREATED, registerResponse.getStatus());
 }
+
+    @Test
+    void loginWithCorrectCredentials() {
+        LoginResponse loginResponse = userService.login(loginRequest);
+        assertThat(loginResponse).isNotNull();
+        assertEquals("Login successful", loginResponse.getMessage());
+        assertEquals(HttpStatus.OK, loginResponse.getHttpStatus());
+    }
+
+    @Test
+    void loginWithIncorrectPassword() {
+        LoginRequest wrongPasswordRequest = new LoginRequest();
+        wrongPasswordRequest.setEmail("test@email.com");
+        wrongPasswordRequest.setPassword("wrongPassword");
+
+        UserLoginException exception = assertThrows(UserLoginException.class, () -> {
+            userService.login(wrongPasswordRequest);
+        });
+
+        assertEquals("wrong email or password", exception.getMessage());
+    }
+
+    @Test
+    void getUserById() {
+        User foundUser = userService.getUserById(user.getId());
+        assertThat(foundUser).isNotNull();
+        assertEquals(user.getFirstName(), foundUser.getFirstName());
+    }
+
+    @Test
+    void getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        assertThat(users).isNotEmpty();
+    }
+
+    @Test
+    void updateUser() {
+        user.setFirstName("updatedFirstName");
+        User updatedUser = userService.updateUser(user.getId(), user);
+        assertThat(updatedUser).isNotNull();
+        assertEquals("updatedFirstName", updatedUser.getFirstName());
+    }
+
+    @Test
+    void deleteUser() {
+        userService.deleteUser(user.getId());
+        assertThrows(BusinessLogicException.class, () -> {
+            userService.getUserById(user.getId());
+        });
+    }
+
+    @Test
+    void changePassword() {
+        String newPassword = "newPassword";
+        userService.changePassword(user.getId(), newPassword);
+        User updatedUser = userService.getUserById(user.getId());
+        assertEquals(newPassword, updatedUser.getPassword());
+    }
 
 }
 
